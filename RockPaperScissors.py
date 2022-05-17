@@ -6,7 +6,7 @@ import random
 
 #initialize window
 root = Tk()
-root.geometry('600x150')
+root.geometry('520x150')
 root.title('Rock Paper Scissor')
 root.config(bg='gainsboro')
 root.resizable(0,0)
@@ -18,16 +18,16 @@ root.columnconfigure(1, weight=1)
 
 
 inputframe = ttk.Frame(root)
-inputframe.grid(column=0, row=0)
+inputframe.grid(column=0, row=0, padx=50, pady=30, sticky=W)
 
-inputframe.columnconfigure(0, weight=1)
-inputframe.columnconfigure(0, weight=3)
+inputframe.columnconfigure(0, weight=2)
+inputframe.columnconfigure(1, weight=2)
 
-ttk.Label(inputframe, text='Choose one: rock, paper or scissors', font='calibri 12 bold').grid(column=0, row=0, sticky=W)
+ttk.Label(inputframe, text='Choose one: \nrock, paper \nor scissors', font='calibri 12 bold').grid(column=0, row=0, sticky=W)
 user_take = StringVar()
 keyword = ttk.Entry(inputframe, width=30, textvariable=user_take)
 keyword.focus()
-keyword.grid(column=1, row=0, sticky=W)
+keyword.grid(column=1, row=0, sticky=E)
 
 
 comp_pick = random.randint(1,3)
@@ -60,12 +60,12 @@ def play():
         Result.set('invalid: choose any one -- rock, paper, scissors')
     
 
-ttk.Label(inputframe, text='Result: ', font='calibri 12 bold').grid(column=0, row=1, sticky=W)
+ttk.Label(inputframe, text='Result: ', font='calibri 12 bold').grid(column=0, row=1, sticky=SW)
 win = ttk.Entry(inputframe, width=30, textvariable= Result)
-win.grid(column=1, row=1, sticky=W)
+win.grid(column=1, row=1, sticky=E)
 
 buttonframe = ttk.Frame(root)
-buttonframe.grid(column=1, row=0)
+buttonframe.grid(column=1, row=0, padx=30, pady=30, sticky=E)
 
 def Reset():
     Result.set('')
@@ -74,9 +74,9 @@ def Reset():
 def Exit():
     root.destroy()
 
-ttk.Button(buttonframe, text='PLAY', command=play).grid(column=0, row=0)
-ttk.Button(buttonframe, text='RESET', command=Reset).grid(column=0, row=1)
-ttk.Button(buttonframe, text='EXIT', command=Exit).grid(column=0, row=2)
+ttk.Button(buttonframe, text='PLAY', command=play).grid(column=0, row=0, sticky=N)
+ttk.Button(buttonframe, text='RESET', command=Reset).grid(column=0, row=1, sticky=W)
+ttk.Button(buttonframe, text='EXIT', command=Exit).grid(column=0, row=2, sticky=S)
 
 
 root.mainloop()
